@@ -8,6 +8,11 @@ The **[test result](https://webreflection.github.io/hyper-bundling/test/)** link
 
 If you know other techniques to bundle these libraries please let me know, thanks.
 
+### Current bundlers
+
+  * [Rollup](https://rollupjs.org/guide/en) after Babel 7 preset-env transformation
+  * [Webpack](https://webpack.js.org) with defaults, without any explicit preset-env transformation
+
 ### What to consider
 
   * _hyperHTML_ has more features than _lit-html_ and these are all available within the library, attached to the main function. This makes _hyperHTML_ less tree-shake friendly, but also more predictable in terms of added size
