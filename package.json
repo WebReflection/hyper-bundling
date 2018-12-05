@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "hyper-bundling",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run webpack && npm run rollup && http-server",
+    "webpack": "npm run pack:hyper && npm run pack:lit",
+    "pack:hyper": "webpack-cli hyperhtml/index.js --mode production --output ./test/webpack/hyper.js",
+    "pack:lit": "webpack-cli lit-html/index.js --mode production --output ./test/webpack/lit.js",
+    "rollup": "npm run roll:hyper && npm run roll:lit",
+    "roll:hyper": "rollup -c rollup.hyper.js",
+    "roll:lit": "rollup -c rollup.lit.js",
+    "test": "http-server"
+  },
+  "keywords": [],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "dependencies": {
+    "hyperhtml": "latest",
+    "lit-html": "latest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "http-server": "^0.11.1",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "webpack": "^4.27.0",
+    "webpack-cli": "^3.1.2"
+  }
+}

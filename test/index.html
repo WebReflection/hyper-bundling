@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rollup vs Webpack</title>
+  <style>
+  body {
+    font-family: sans-serif;
+  }
+  body > ul > li {
+    margin-bottom: 16px;
+  }
+  a + small {
+    margin: 8px;
+  }
+  </style>
+  <script>
+  addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a').forEach(function (a) {
+      var xhr = new XMLHttpRequest;
+      xhr.open('HEAD', a.href.replace(/\.html$/, '.js'), true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          a.parentNode.appendChild(
+            document.createElement('small')
+          ).textContent = getSize(+xhr.getResponseHeader('content-length'));
+        }
+      };
+      xhr.send(null);
+    });
+    function getSize(size) {
+      var i = 0;
+      var sizes = [
+        'bytes',
+        'Kb',
+        'Mb',
+        'Gb'
+      ];
+      while (size > 1024) {
+        i++;
+        size /= 1024;
+      }
+      return size.toFixed(i) + sizes[i];
+    }
+  });
+  </script>
+</head>
+<body>
+  <ul>
+    <li>
+      <strong>hyperHTML</strong>
+      <ul>
+        <li><a href="rollup/hyper.html">rollup</a></li>
+        <li><a href="webpack/hyper.html">webpack</a></li>
+      </ul>
+    </li>
+    <li>
+      <strong>lit-html</strong>
+      <ul>
+        <li><a href="rollup/lit.html">rollup</a></li>
+        <li><a href="webpack/lit.html">webpack</a></li>
+      </ul>
+    </li>
+  </ul>
+</body>
+</html>
